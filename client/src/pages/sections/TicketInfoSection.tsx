@@ -328,4 +328,4 @@ export const TicketInfoSection = (): JSX.Element => {
 };
 
 // dummy lines
-// im surya currently working for techxx
+// im surya currently working for techxxx
