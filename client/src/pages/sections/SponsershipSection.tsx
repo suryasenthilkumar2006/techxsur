@@ -30,7 +30,7 @@ const sponsors = {
   silver: [
     {
       name: "Vectra Technosoft",
-      logo: "/attached_assets/sponsor/advantage.png",
+      logo: "/figmaAssets/ieee-mb-blue-3.png",
       url: "https://www.advantagepro.in",
       description: "Image CDN with optimization and real-time transformation.",
     },
