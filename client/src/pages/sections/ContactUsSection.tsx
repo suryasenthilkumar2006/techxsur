@@ -109,7 +109,7 @@ export const ContactUsSection = (): JSX.Element => {
     { name: "Register", href: "#tickets" },
   ];
 
-  
+
 
   return (
     <section
@@ -201,13 +201,13 @@ export const ContactUsSection = (): JSX.Element => {
                 TechX Madras
               </h3>
               <p className="font-['Poppins',sans-serif] text-white/90 text-base lg:text-lg leading-relaxed mb-8">
-               eXplore, eXcel, eXperience
+                eXplore, eXcel, eXperience
               </p>
             </div>
 
             {/* Social Media Icons */}
             <div className="flex space-x-6">
- <a
+              <a
                 href="https://www.instagram.com/ssit_ieee_cs_society/"
                 className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20"
                 aria-label="Instagram"
@@ -269,19 +269,20 @@ export const ContactUsSection = (): JSX.Element => {
                   Mr M Parthiban
                 </p>
                 <br />
-                
+
               </div>
               <div>
                 <p className="font-['Poppins',sans-serif] font-semibold text-white text-lg mb-3">
                   IEEE CS Chairpersons
                 </p>
                 <p className="font-['Poppins',sans-serif] text-white/80 text-base">
-                  Charu Dharshana R - 98848 95505
+                  <span className="font-medium">Charu Dharshana R</span> – <a href="tel:+919884895505" className="hover:underline">+91 98848 95505</a>
                 </p>
                 <p className="font-['Poppins',sans-serif] text-white/80 text-base">
-                  Parveen Begum T - 95001 77775
+                  <span className="font-medium">Parveen Begum T</span> – <a href="tel:+919500177775" className="hover:underline">+91 95001 77775</a>
                 </p>
               </div>
+
               <div>
                 <p className="font-['Poppins',sans-serif] font-semibold text-white text-lg mb-3">
                   Address
@@ -289,26 +290,28 @@ export const ContactUsSection = (): JSX.Element => {
                 <p className="font-['Poppins',sans-serif] text-white/80 text-base leading-relaxed">
                   Sri Sairam Institute of Technology
                   <br />
-                  Sai Leo Nagar, West Tambaram, 
-                  <br/>
-                  Chennai - 600044, Tamil Nadu, India. 
+                  Sai Leo Nagar, West Tambaram,
+                  <br />
+                  Chennai - 600044, Tamil Nadu, India.
                 </p>
               </div>
 
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
-                  {/* <FontAwesomeIcon
-                    icon={faEnvelope}
-                    className="text-red-400 text-base"
-                  /> */}
                   <span className="font-['Poppins',sans-serif] text-white/80 text-base">
-                    techxmadras25@gmail.com
-                    <br />
-                 
-                    ssitieeesbcomputersociety@gmail.com
+                    <p className="font-['Poppins',sans-serif] font-semibold text-white text-lg mb-3">
+                      Email US
+                    </p>
+                    <a href="mailto:techxmadras25@gmail.com" className="block hover:underline">
+                      techxmadras25@gmail.com
+                    </a>
+                    <a href="mailto:ssitieeesbcomputersociety@gmail.com" className="block hover:underline">
+                      ssitieeesbcomputersociety@gmail.com
+                    </a>
                   </span>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
