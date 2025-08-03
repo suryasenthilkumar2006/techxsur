@@ -42,7 +42,7 @@ const sponsors = {
     },
      {
       name: "PT Export",
-      logo: "/figmaAssets/ptexports.jpeg",
+      logo: "/figmaAssets/ptexports.jpg",
       url: "https://www.advantagepro.in",
       description: "Image CDN with optimization and real-time transformation.",
     },
