@@ -6,6 +6,7 @@ import { EventAgendaSection } from "./sections/EventAgendaSection";
 import { HeroSection } from "./sections/HeroSection";
 import { TicketInfoSection } from "./sections/TicketInfoSection";
 import { WhySponsorSection } from "./sections/WhySponsorSection";
+import SponsorshipSection from "./sections/SponsershipSection";
 
 export function Option() {
   return (
@@ -15,6 +16,9 @@ export function Option() {
         <AboutUsSection />
       </div>
       <AboutHostSection />
+       <div id= "sponsers">
+        <SponsorshipSection />
+      </div>
 
       <WhySponsorSection />
       <div id="agenda">
@@ -26,6 +30,7 @@ export function Option() {
       <div id="contact">
         <ContactUsSection />
       </div>
+     
     </div>
   );
 }
