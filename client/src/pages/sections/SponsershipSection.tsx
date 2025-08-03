@@ -48,7 +48,7 @@ const sponsors = {
     },
     {
       name: "Para Project",
-      logo: "/figmaAssets/pp.png",
+      logo: "/figmaAssets/PP.png",
       url: "https://paraprojects.in",
       description: "Cloud communications platform for voice, video, messaging, and more.",
     },
