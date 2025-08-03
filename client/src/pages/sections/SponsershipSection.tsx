@@ -30,13 +30,13 @@ const sponsors = {
   silver: [
     {
       name: "Vectra Technosoft",
-      logo: "/figmaAssets/ieee-mb-blue-3.png",
+      logo: "/figmaAssets/advantage.png",
       url: "https://www.advantagepro.in",
       description: "Image CDN with optimization and real-time transformation.",
     },
     {
       name: "OneYes",
-      logo: "/attached_assets/sponsor/oneyes.jpeg",
+      logo: "/figmaAssets/oneyes.jpeg",
       url: "https://oneyesinfotechsolutions.com",
       description: "Cloud communications platform for voice, video, messaging, and more.",
     },
