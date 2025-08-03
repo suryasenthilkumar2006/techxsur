@@ -30,13 +30,13 @@ const sponsors = {
   silver: [
     {
       name: "Vectra Technosoft",
-      logo: "/attached_assests/sponsor/advantage.png",
+      logo: "/attached_assets/sponsor/advantage.png",
       url: "https://imagekit.io",
       description: "Image CDN with optimization and real-time transformation.",
     },
     {
       name: "Vonage",
-      logo: "/attached_assests/sponsor/oneyes.jpeg",
+      logo: "/attached_assets/sponsor/oneyes.jpeg",
       url: "https://www.vonage.com",
       description: "Cloud communications platform for voice, video, messaging, and more.",
     },
