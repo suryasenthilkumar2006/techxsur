@@ -31,13 +31,13 @@ const sponsors = {
     {
       name: "Vectra Technosoft",
       logo: "/attached_assets/sponsor/advantage.png",
-      url: "https://imagekit.io",
+      url: "https://www.advantagepro.in",
       description: "Image CDN with optimization and real-time transformation.",
     },
     {
-      name: "Vonage",
+      name: "OneYes",
       logo: "/attached_assets/sponsor/oneyes.jpeg",
-      url: "https://www.vonage.com",
+      url: "https://oneyesinfotechsolutions.com",
       description: "Cloud communications platform for voice, video, messaging, and more.",
     },
   ],
