@@ -40,6 +40,24 @@ const sponsors = {
       url: "https://oneyesinfotechsolutions.com",
       description: "Cloud communications platform for voice, video, messaging, and more.",
     },
+     {
+      name: "PT Export",
+      logo: "/figmaAssets/ptexports.jpeg",
+      url: "https://www.advantagepro.in",
+      description: "Image CDN with optimization and real-time transformation.",
+    },
+    {
+      name: "Para Project",
+      logo: "/figmaAssets/pp",
+      url: "https://paraprojects.in",
+      description: "Cloud communications platform for voice, video, messaging, and more.",
+    },
+     {
+      name: "Thozhil",
+      logo: "/figmaAssets/thozhil.png",
+      url: "https://www.thozhil.co.in",
+      description: "Image CDN with optimization and real-time transformation.",
+    },
   ],
   bronze: [
     {
