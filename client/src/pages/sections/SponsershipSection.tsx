@@ -29,14 +29,14 @@ const sponsors = {
   ],
   silver: [
     {
-      name: "ImageKit",
-      logo: "/sponsors/imagekit.png",
+      name: "Vectra Technosoft",
+      logo: "/attached_assests/sponsors/advantage.png",
       url: "https://imagekit.io",
       description: "Image CDN with optimization and real-time transformation.",
     },
     {
       name: "Vonage",
-      logo: "/sponsors/vonage.png",
+      logo: "/attached_assests/sponsors/oneyes.jpeg",
       url: "https://www.vonage.com",
       description: "Cloud communications platform for voice, video, messaging, and more.",
     },
