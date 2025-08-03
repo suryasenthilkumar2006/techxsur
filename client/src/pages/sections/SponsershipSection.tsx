@@ -48,13 +48,13 @@ const sponsors = {
     },
     {
       name: "Para Project",
-      logo: "/figmaAssets/pp",
+      logo: "/figmaAssets/pp.png",
       url: "https://paraprojects.in",
       description: "Cloud communications platform for voice, video, messaging, and more.",
     },
      {
       name: "Thozhil",
-      logo: "/figmaAssets/thozhil.png",
+      logo: "/figmaAssets/thozhill.png",
       url: "https://www.thozhil.co.in",
       description: "Image CDN with optimization and real-time transformation.",
     },
