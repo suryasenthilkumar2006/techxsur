@@ -11,6 +11,7 @@ export const HeroSection = (): JSX.Element => {
     { label: "About us", href: "#about" },
     { label: "Agenda", href: "#agenda" },
     { label: "Tickets", href: "#tickets" },
+    { label: "Sponsors", href: "#sponsers" },
     { label: "Contact us", href: "#contact" },
   ];
 
