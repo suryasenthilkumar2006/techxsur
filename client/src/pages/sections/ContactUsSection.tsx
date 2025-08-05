@@ -239,7 +239,7 @@ export const ContactUsSection = (): JSX.Element => {
           </div>
           <div className="lg:col-span-1">
             <h4 className="font-['Poppins',sans-serif] font-semibold text-white text-xl lg:text-2xl mb-8 drop-shadow-lg">
-              QUICK LINKS
+              Quick Links
             </h4>
             <ul className="space-y-4">
               {quickLinks.map((link, index) => (
@@ -256,7 +256,7 @@ export const ContactUsSection = (): JSX.Element => {
           </div>
           <div className="lg:col-span-1">
             <h4 className="font-['Poppins',sans-serif] font-semibold text-white text-xl lg:text-2xl mb-8 drop-shadow-lg">
-              CONTACT
+              Contact
             </h4>
             <div className="space-y-6">
               <div>
@@ -266,7 +266,7 @@ export const ContactUsSection = (): JSX.Element => {
                 <p className="font-['Poppins',sans-serif] text-white/80 text-base">
                   Dr B Sreedevi
                   <br />
-                  Mr M Parthiban
+                  Mr Parthiban Mani
                 </p>
                 <br />
 
@@ -300,7 +300,7 @@ export const ContactUsSection = (): JSX.Element => {
                 <div className="flex items-center space-x-3">
                   <span className="font-['Poppins',sans-serif] text-white/80 text-base">
                     <p className="font-['Poppins',sans-serif] font-semibold text-white text-lg mb-3">
-                      Email US
+                      Email Us
                     </p>
                     <a href="mailto:techxmadras25@gmail.com" className="block hover:underline">
                       techxmadras25@gmail.com

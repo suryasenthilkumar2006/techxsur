@@ -19,10 +19,10 @@ export const WhySponsorSection = (): JSX.Element => {
   ];
 
   const speakers = [
-    { id: 1, name: "Kalam", day: "Day 1" },
-    { id: 2, name: "Elon Musk", day: "Day 2" },
-    { id: 3, name: "Ada Lovelace", day: "Day 1" },
-    { id: 4, name: "Grace Hopper", day: "Day 2" },
+    { id: 1, name: "Will be updated soon", day: "Day 1" },
+    { id: 2, name: "Will be updated soon", day: "Day 2" },
+    { id: 3, name: "Will be updated soon", day: "Day 1" },
+    { id: 4, name: "Will be updated soon", day: "Day 2" },
   ];
 
   const speakerIcon = (
