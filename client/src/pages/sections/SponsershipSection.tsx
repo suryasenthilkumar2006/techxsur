@@ -83,6 +83,7 @@ const SponsorSection = () => {
       <span className="ml-1 text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-white to-red-400 font-semibold animate-gradient-x">
         TechX
       </span> 
+      <br />
       a reality.
     </p>
   </div>
