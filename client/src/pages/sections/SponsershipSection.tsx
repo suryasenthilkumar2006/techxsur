@@ -88,23 +88,29 @@ const SponsorSection = () => {
         {/* Animated Title Box */}
        <div className="relative inline-block mb-16 animate-fade-in-up">
   <div className="absolute -inset-6 bg-red-700/30 rounded-3xl blur-3xl opacity-50 animate-pulse"></div>
-  <div className="relative px-10 py-6 border border-red-800 rounded-3xl bg-black/70 backdrop-blur-xl shadow-xl transition-transform duration-700 ease-out hover:scale-[1.02]">
+  <div className="relative inline-block mb-16 animate-fade-in-up">
+  {/* Glowing blurred background */}
+  <div className="absolute -inset-5 bg-red-700/40 rounded-3xl blur-2xl opacity-40 animate-pulse pointer-events-none"></div>
+
+  {/* Main content container */}
+  <div className="relative px-8 py-6 sm:px-10 sm:py-8 border border-red-800 rounded-3xl bg-black/70 backdrop-blur-xl shadow-xl transition-transform duration-500 ease-out hover:scale-[1.02] max-w-2xl mx-auto">
     
-    {/* Animated heading */}
-    <h2 className="text-4xl lg:text-5xl font-extrabold mb-4 font-[Poppins] tracking-wide text-white animate-text-glow">
+    {/* Title */}
+    <h2 className="text-4xl lg:text-5xl font-extrabold mb-4 font-[Poppins] tracking-wide text-white animate-text-glow text-center">
       <span className="inline-block animate-slide-in-up">Our Sponsors</span>
     </h2>
 
-    {/* Subheading with animated TechX */}
-    <p className="text-gray-300 text-lg font-[Inter] animate-fade-in opacity-80">
-      People who helped to make 
-      <span className="ml-1 text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-white to-red-400 font-semibold animate-gradient-x">
+    {/* Subtitle */}
+    <p className="text-gray-300 text-lg font-[Inter] animate-fade-in opacity-80 leading-relaxed text-center">
+      People who helped to make{" "}
+      <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-white to-red-400 font-semibold animate-gradient-x">
         TechX
-      </span> 
-      <br />
+      </span>{" "}
       a reality.
     </p>
   </div>
+</div>
+
 </div>
 
 
