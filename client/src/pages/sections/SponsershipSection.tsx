@@ -5,28 +5,28 @@ import React from "react";
 
 // Update sponsor info with website URLs
 const sponsors = {
-  platinum: [
-    {
-      name: "",
-       logo: "",
-      url: "",
-      description: "Empowering entrepreneurs globally with domain & hosting solutions.",
-    },
-  ],
-  gold: [
-    {
-      name: "",
-      logo: "",
-      url: "",
-      description: "",
-    },
-    {
-      name: "",
-      logo: "",
-      url: "",
-      description: "",
-    },
-  ],
+  // platinum: [
+  //   {
+  //     name: "",
+  //      logo: "",
+  //     url: "",
+  //     description: "Empowering entrepreneurs globally with domain & hosting solutions.",
+  //   },
+  // ],
+  // gold: [
+  //   {
+  //     name: "",
+  //     logo: "",
+  //     url: "",
+  //     description: "",
+  //   },
+  //   {
+  //     name: "",
+  //     logo: "",
+  //     url: "",
+  //     description: "",
+  //   },
+  // ],
   silver: [
     {
       name: "Vectra Technosoft",
@@ -59,26 +59,26 @@ const sponsors = {
       description: "",
     },
   ],
-  bronze: [
-    {
-      name: "",
-      logo: "",
-      url: "",
-      description: "",
-    },
-    {
-      name: "",
-      logo: "",
-      url: "",
-      description: "",
-    },
-    {
-      name: "",
-      logo: "",
-      url: "",
-      description: "",
-    },
-  ],
+  // bronze: [
+  //   {
+  //     name: "",
+  //     logo: "",
+  //     url: "",
+  //     description: "",
+  //   },
+  //   {
+  //     name: "",
+  //     logo: "",
+  //     url: "",
+  //     description: "",
+  //   },
+  //   {
+  //     name: "",
+  //     logo: "",
+  //     url: "",
+  //     description: "",
+  //   },
+  // ],
 };
 
 const SponsorSection = () => {
