@@ -179,6 +179,11 @@ export const TicketInfoSection = (): JSX.Element => {
 
         <CardFooter className="flex justify-center p-0 mt-4 relative z-10">
           <div className="relative group/button">
+             <a
+               href="https://konfhub.com/techxmadras-25"
+               target="_blank"
+               rel="noopener noreferrer"
+               >
             <Button className="relative bg-gradient-to-r from-black via-gray-900 to-black rounded-[30px] border-[3px] border-red-500/80 px-[19px] py-1 shadow-[0px_10px_30px_rgba(0,0,0,0.5)] transition-all duration-500 hover:shadow-[0px_15px_40px_rgba(0,0,0,0.7)] hover:scale-105 hover:border-red-400 overflow-hidden">
 
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 -translate-x-full group-hover/button:translate-x-full transition-transform duration-1000"></div>
@@ -187,6 +192,7 @@ export const TicketInfoSection = (): JSX.Element => {
             Register
           </span>
         </Button>
+        </a>
           </div>
       </CardFooter>
 
