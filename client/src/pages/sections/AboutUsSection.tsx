@@ -84,7 +84,7 @@ export const AboutUsSection = (): JSX.Element => {
       className:
         "w-20 h-16 sm:w-24 sm:h-18 md:w-32 md:h-20 lg:w-[191px] lg:h-[85px]",
     },
-    {
+     {
       src: "/figmaAssets/collaborator-removebg-preview.png",
       alt: "CS POSTER",
       className:
@@ -136,7 +136,7 @@ export const AboutUsSection = (): JSX.Element => {
       id="about"
       className="relative w-full min-h-screen overflow-hidden bg-black"
     >
-
+  
       <div className="absolute inset-0 bg-gradient-to-br from-red via-red-950/20 to-black z-10"></div>
       <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-red-900/10 to-black/90 z-11"></div>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_40%,rgba(0,0,0,0.15),transparent)] z-12"></div>
@@ -429,18 +429,18 @@ export const AboutUsSection = (): JSX.Element => {
           }
         }
 
-        @keyframes animate-scroll-fixed {
-      0% {
-        transform: translateX(0%);
-      }
-      100% {
-        transform: translateX(-25%);
-      }
-    }
+        @keyframes animate-scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
 
-    .animate-scroll-fixed {
-      animation: animate-scroll-fixed 30s linear infinite;
-    }
+        .animate-scroll {
+          animation: animate-scroll 25s linear infinite;
+        }
 
         .animation-paused {
           animation-play-state: paused;
