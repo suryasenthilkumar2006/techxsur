@@ -88,7 +88,7 @@ export const WhySponsorSection = (): JSX.Element => {
 
         {/* Timeline & Benefit Cards */}
         <div className="relative max-w-5xl mx-auto mb-32">
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-red-500 z-10"/>
+<div className="hidden sm:block absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-red-500 z-10"/>
           <div className="space-y-20 px-2 sm:px-4 md:px-6 lg:px-8">
             {benefitCards.map((card, index) => (
               <div key={index}
