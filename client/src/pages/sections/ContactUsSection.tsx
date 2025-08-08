@@ -276,10 +276,10 @@ export const ContactUsSection = (): JSX.Element => {
                   IEEE CS Chairpersons
                 </p>
                 <p className="font-['Poppins',sans-serif] text-white/80 text-base">
-                  <span className="font-medium">Charu Dharshana R</span> – <a href="tel:+919884895505" className="hover:underline">+91 98848 95505</a>
+                  <span className="font-medium">Charu Dharshana R</span> – <a href="tel:+919884895505" className="hover:underline">charudharshana49@ieee.org</a>
                 </p>
                 <p className="font-['Poppins',sans-serif] text-white/80 text-base">
-                  <span className="font-medium">Parveen Begum T</span> – <a href="tel:+919500177775" className="hover:underline">+91 95001 77775</a>
+                  <span className="font-medium">Parveen Begum T</span> – <a href="tel:+919500177775" className="hover:underline">parveenbegumt@ieee.org</a>
                 </p>
               </div>
 
