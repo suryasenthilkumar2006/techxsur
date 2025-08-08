@@ -122,9 +122,9 @@ export const AboutHostSection = (): JSX.Element => {
             </div>  */}
           </div>
 
-          <div className="flex flex-col space-y-6 lg:space-y-8">
-            <div className="bg-black/20 backdrop-blur-sm rounded-xl lg:rounded-2xl p-6 lg:p-8 border border-white/10 shadow-xl hover:bg-black/25 transition-colors duration-300">
-              <p className="font-sans text-white text-base sm:text-lg lg:text-xl leading-relaxed lg:leading-loose">
+         <div className="flex flex-col space-y-6 lg:space-y-8">
+            <div className="bg-black/20 backdrop-blur-sm rounded-xl lg:rounded-2xl p-5 sm:p-6 lg:p-8 border border-white/10 shadow-xl hover:bg-black/25 transition-colors duration-300">
+              <p className="font-sans text-white text-base sm:text-lg lg:text-xl leading-normal max-w-prose mx-auto text-justify">
                 Sri Sairam Institute of Technology, Chennai, affiliated with
                 Anna University and accredited with an 'A+' grade by NAAC and
                 NBA, is a premier engineering college known for academic
@@ -132,8 +132,8 @@ export const AboutHostSection = (): JSX.Element => {
               </p>
             </div>
 
-            <div className="bg-black/20 backdrop-blur-sm rounded-xl lg:rounded-2xl p-6 lg:p-8 border border-white/10 shadow-xl hover:bg-black/25 transition-colors duration-300">
-              <p className="font-sans text-white text-base sm:text-lg lg:text-xl leading-relaxed lg:leading-loose">
+            <div className="bg-black/20 backdrop-blur-sm rounded-xl lg:rounded-2xl p-5 sm:p-6 lg:p-8 border border-white/10 shadow-xl hover:bg-black/25 transition-colors duration-300">
+              <p className="font-sans text-white text-base sm:text-lg lg:text-xl leading-normal max-w-prose mx-auto text-justify">
                 Through platforms like Ideathon, Solveathon, Innovathon, and
                 Inspirathon, and initiatives like the Sairam Techno Incubation
                 Foundation, it has supported over 85 startups in robotics,
@@ -141,8 +141,8 @@ export const AboutHostSection = (): JSX.Element => {
               </p>
             </div>
 
-            <div className="bg-black/20 backdrop-blur-sm rounded-xl lg:rounded-2xl p-6 lg:p-8 border border-white/10 shadow-xl hover:bg-black/25 transition-colors duration-300">
-              <p className="font-sans text-white text-base sm:text-lg lg:text-xl leading-relaxed lg:leading-loose">
+            <div className="bg-black/20 backdrop-blur-sm rounded-xl lg:rounded-2xl p-5 sm:p-6 lg:p-8 border border-white/10 shadow-xl hover:bg-black/25 transition-colors duration-300">
+              <p className="font-sans text-white text-base sm:text-lg lg:text-xl leading-normal max-w-prose mx-auto text-justify">
                 Empowering students to build real-world solutions aligned with
                 the UN Sustainable Development Goals (SDGs).
               </p>
