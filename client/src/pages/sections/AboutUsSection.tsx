@@ -84,7 +84,7 @@ export const AboutUsSection = (): JSX.Element => {
       className:
         "w-20 h-16 sm:w-24 sm:h-18 md:w-32 md:h-20 lg:w-[191px] lg:h-[85px]",
     },
-    {
+     {
       src: "/figmaAssets/collaborator-removebg-preview.png",
       alt: "CS POSTER",
       className:
@@ -136,7 +136,7 @@ export const AboutUsSection = (): JSX.Element => {
       id="about"
       className="relative w-full min-h-screen overflow-hidden bg-black"
     >
-
+  
       <div className="absolute inset-0 bg-gradient-to-br from-red via-red-950/20 to-black z-10"></div>
       <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-red-900/10 to-black/90 z-11"></div>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_40%,rgba(0,0,0,0.15),transparent)] z-12"></div>
@@ -300,26 +300,20 @@ export const AboutUsSection = (): JSX.Element => {
                 </h2>
               </div>
             </div>
-            <div className="relative group perspective-1000 transform-gpu">
-              <div className="absolute -inset-6 bg-black/60 rounded-3xl blur-3xl opacity-60 group-hover:opacity-85 transition-all duration-1000"></div>
-              <div className="absolute -inset-2 bg-red-600/15 rounded-2xl blur-lg opacity-60"></div>
-              <div className="relative bg-gradient-to-br from-black/95 via-red-950/15 to-black/95 backdrop-blur-2xl border-2 border-red-600/30 rounded-3xl p-10 shadow-[0_40px_100px_rgba(0,0,0,0.9)] hover:shadow-[0_50px_120px_rgba(220,38,38,0.3)] transition-all duration-1000 hover:-translate-y-4 hover:scale-[1.01] overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-red-600/6 via-transparent to-red-600/4 rounded-3xl pointer-events-none"></div>
-
-                <p className="relative [font-family:'Poppins',sans-serif] font-normal text-white text-xl text-justify leading-relaxed drop-shadow-xl tracking-wide">
-                  TechX Madras is a premier initiative hosted by the IEEE CS SBC
-                  of SSIT, as part of the IEEE CS SYP TechX series, in
-                  association with the IEEE CS Madras Chapter. Gathering over
-                  200+ passionate tech minds, this dynamic two-day event offers
-                  a vibrant mix of learning, collaboration, and innovation.
-                  Participants dive into engaging hands-on workshops,
-                  thought-provoking tech talks led by industry experts, and
-                  high-energy sessions including debates, panel discussions, and
-                  a thrilling hackathon&nbsp;&nbsp;all designed to inspire,
-                  connect, and ignite the next generation of tech leaders.
-                </p>
-              </div>
+            <div className="flex flex-col space-y-6 lg:space-y-8 max-w-2xl">
+            <div className="bg-black/20 backdrop-blur-sm rounded-xl lg:rounded-2xl p-8 lg:p-10 border border-white/10 shadow-xl hover:bg-black/25 transition-colors duration-300">
+              <p className="font-sans text-white text-lg sm:text-xl leading-relaxed lg:leading-loose text-justify">
+                TechX Madras is a premier initiative hosted by the IEEE CS SBC of SSIT, 
+                as part of the IEEE CS SYP TechX series, in association with the IEEE CS 
+                Madras Chapter. Gathering over 200+ passionate tech minds, this dynamic 
+                two-day event offers a vibrant mix of learning, collaboration, and innovation.
+                Participants dive into engaging hands-on workshops, thought-provoking tech 
+                talks led by industry experts, and high-energy sessions including debates, 
+                panel discussions, and a thrilling hackathon — all designed to inspire, 
+                connect, and ignite the next generation of tech leaders.
+              </p>
             </div>
+          </div>
           </div>
           <div className="flex flex-col items-center justify-center w-full mt-16 sm:mt-24 md:mt-32 lg:mt-[200px]">
             <div className="relative group mb-8 sm:mb-10 md:mb-12 perspective-1000 transform-gpu">
@@ -429,18 +423,18 @@ export const AboutUsSection = (): JSX.Element => {
           }
         }
 
-        @keyframes animate-scroll-fixed {
-      0% {
-        transform: translateX(0%);
-      }
-      100% {
-        transform: translateX(-25%);
-      }
-    }
+        @keyframes animate-scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-100%);
+          }
+        }
 
-    .animate-scroll-fixed {
-      animation: animate-scroll-fixed 30s linear infinite;
-    }
+        .animate-scroll {
+          animation: animate-scroll 25s linear infinite;
+        }
 
         .animation-paused {
           animation-play-state: paused;
