@@ -303,7 +303,7 @@ export const AboutUsSection = (): JSX.Element => {
             <div className="flex flex-col space-y-6 lg:space-y-8 max-w-2xl">
             <div className="bg-black/20 backdrop-blur-sm rounded-xl lg:rounded-2xl p-8 lg:p-10 border border-white/10 shadow-xl hover:bg-black/25 transition-colors duration-300">
               <p className="font-sans text-white text-lg sm:text-xl leading-relaxed lg:leading-loose text-justify">
-                TechX Madras is a premier initiative hosted by the IEEE CS SBC of SSIT, 
+                TechX Madras is a flagship event hosted by the IEEE CS SBC of SSIT, 
                 as part of the IEEE CS SYP TechX series, in association with the IEEE CS 
                 Madras Chapter. Gathering over 200+ passionate tech minds, this dynamic 
                 two-day event offers a vibrant mix of learning, collaboration, and innovation.
