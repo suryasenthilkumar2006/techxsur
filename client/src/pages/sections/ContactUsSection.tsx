@@ -268,27 +268,26 @@ export const ContactUsSection = (): JSX.Element => {
                   <br />
                   Mr Parthiban Mani
                 </p>
-                <br />
 
               </div>
               <div>
                 <p className="font-['Poppins',sans-serif] font-semibold text-white text-lg mb-3">
                   IEEE CS Chairpersons
                 </p>
-<p className="font-['Poppins',sans-serif] text-white/80 text-base whitespace-nowrap">
-  <span className="font-medium">Charu Dharshana R</span> – 
-  <a href="mailto:charudharshana49@ieee.org" className="hover:underline ml-1">
-    charudharshana49@ieee.org
-  </a>
-</p>
+                <p className="font-['Poppins',sans-serif] text-white/80 text-base whitespace-nowrap">
+                  <span className="font-medium">Charu Dharshana R</span> –
+                  <a href="mailto:charudharshana49@ieee.org" className="hover:underline ml-1">
+                    charudharshana49@ieee.org
+                  </a>
+                </p>
 
 
                 <p className="font-['Poppins',sans-serif] text-white/80 text-base whitespace-nowrap">
-  <span className="font-medium">Parveen Begum T</span> – 
-  <a href="mailto:charudharshana49@ieee.org" className="hover:underline ml-1">
-    parveenbegumt@ieee.org
-  </a>
-</p>
+                  <span className="font-medium">Parveen Begum T</span> –
+                  <a href="mailto:charudharshana49@ieee.org" className="hover:underline ml-1">
+                    parveenbegumt@ieee.org
+                  </a>
+                </p>
 
 
               </div>
