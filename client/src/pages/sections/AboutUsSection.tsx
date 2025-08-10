@@ -54,43 +54,43 @@ export const AboutUsSection = (): JSX.Element => {
   ];
 
   const collaboratorLogos = [
-    {
-      src: "/figmaAssets/cs-poster-4.png",
-      alt: "CS POSTER",
-      className:
-        "w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-[101px] lg:h-[95px]",
-    },
-    {
-      src: "/figmaAssets/ieee-mb-blue-3.png",
-      alt: "IEEE MB BLUE",
-      className:
-        "w-32 h-12 sm:w-40 sm:h-12 md:w-48 md:h-14 lg:w-[219px] lg:h-16",
-    },
-    {
-      src: "/figmaAssets/layer-5.png",
-      alt: "Layer",
-      className:
-        "w-32 h-12 sm:w-40 sm:h-12 md:w-48 md:h-14 lg:w-[209px] lg:h-16",
-    },
-    {
-      src: "/figmaAssets/images-removebg-preview--1--2.png",
-      alt: "Images removebg",
-      className:
-        "w-20 h-16 sm:w-24 sm:h-20 md:w-32 md:h-24 lg:w-[264px] lg:h-[126px]",
-    },
-    {
-      src: "/figmaAssets/cs-poster-1--3.png",
-      alt: "CS POSTER",
-      className:
-        "w-20 h-16 sm:w-24 sm:h-18 md:w-32 md:h-20 lg:w-[191px] lg:h-[85px]",
-    },
-     {
-      src: "/figmaAssets/collaborator-removebg-preview.png",
-      alt: "CS POSTER",
-      className:
-        "w-20 h-16 sm:w-24 sm:h-18 md:w-32 md:h-20 lg:w-[191px] lg:h-[85px]",
-    },
-  ];
+  {
+    src: "/figmaAssets/cs-poster-4.png",
+    alt: "CS POSTER",
+    className: "w-32 h-12 sm:w-40 sm:h-12 md:w-48 md:h-14 lg:w-[219px] lg:h-16",
+  },
+  {
+    src: "/figmaAssets/cs-syp-image.png",
+    alt: "Cs syp image",
+    className: "w-32 h-12 sm:w-40 sm:h-12 md:w-48 md:h-14 lg:w-[219px] lg:h-16",
+  },
+  {
+    src: "/figmaAssets/ieee mb blue 2.png",
+    alt: "IEEE MB BLUE",
+    className: "w-32 h-12 sm:w-40 sm:h-12 md:w-48 md:h-14 lg:w-[219px] lg:h-16",
+  },
+  {
+    src: "/figmaAssets/Layer 6.png",
+    alt: "Layer",
+    className: "w-32 h-12 sm:w-40 sm:h-12 md:w-48 md:h-14 lg:w-[209px] lg:h-16",
+  },
+  // commented logos are kept as is; no changes needed here
+  {
+    src: "/figmaAssets/collaborator-removebg-preview.png",
+    alt: "CS POSTER",
+    className: "w-32 h-12 sm:w-40 sm:h-12 md:w-48 md:h-14 lg:w-[219px] lg:h-16",
+  },
+];
+
+const CollaboratorsRow = () => {
+  return (
+    <div className="flex justify-center space-x-8 overflow-x-auto py-4">
+      {collaboratorLogos.map(({ src, alt, className }, index) => (
+        <img key={index} src={src} alt={alt} className={className} />
+      ))}
+    </div>
+  );
+};
 
   React.useEffect(() => {
     const handleScroll = () => {
