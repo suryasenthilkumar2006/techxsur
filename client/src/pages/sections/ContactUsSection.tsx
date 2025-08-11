@@ -3,6 +3,7 @@ import {
   InstagramIcon,
   TwitterIcon,
   LinkedinIcon,
+  MailOpenIcon,
 } from "lucide-react";
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -235,6 +236,15 @@ export const ContactUsSection = (): JSX.Element => {
               >
                 <FontAwesomeIcon icon={faXTwitter} className="text-white text-lg" />
               </a>
+<a
+  href="mailto:techxmadras25@gmail.com"
+  className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20"
+  aria-label="Email"
+>
+  <FontAwesomeIcon icon={faEnvelope} className="text-white text-lg" />
+</a>
+
+
             </div>
           </div>
           <div className="lg:col-span-1">
@@ -293,7 +303,7 @@ export const ContactUsSection = (): JSX.Element => {
               </div>
 
               <div>
-                <p className="font-['Poppins',sans-serif] font-semibold text-white text-lg mb-3">
+                {/* <p className="font-['Poppins',sans-serif] font-semibold text-white text-lg mb-3">
                   Address
                 </p>
                 <p className="font-['Poppins',sans-serif] text-white/80 text-base leading-relaxed">
@@ -302,21 +312,21 @@ export const ContactUsSection = (): JSX.Element => {
                   Sai Leo Nagar, West Tambaram,
                   <br />
                   Chennai - 600044, Tamil Nadu, India.
-                </p>
+                </p> */}
               </div>
 
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <span className="font-['Poppins',sans-serif] text-white/80 text-base">
-                    <p className="font-['Poppins',sans-serif] font-semibold text-white text-lg mb-3">
+                    {/* <p className="font-['Poppins',sans-serif] font-semibold text-white text-lg mb-3">
                       Email Us
-                    </p>
-                    <a href="mailto:techxmadras25@gmail.com" className="block hover:underline">
+                    </p> */}
+                    {/* <a href="mailto:techxmadras25@gmail.com" className="block hover:underline">
                       techxmadras25@gmail.com
                     </a>
                     <a href="mailto:ssitieeesbcomputersociety@gmail.com" className="block hover:underline">
                       ssitieeesbcomputersociety@gmail.com
-                    </a>
+                    </a> */}
                   </span>
                 </div>
               </div>

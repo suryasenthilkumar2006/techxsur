@@ -162,7 +162,7 @@ export const HeroSection = (): JSX.Element => {
             <div className="relative">
               <div className="mb-6">
                 <h3 className="[font-family:'Aoboshi_One',Helvetica] font-medium text-white/90 text-lg sm:text-xl md:text-2xl lg:text-3xl tracking-[0.2em] mb-4 drop-shadow-lg">
-                  IEEE CS SYP
+                  IEEE CS SYP 
                 </h3>
                 <div className="w-32 h-0.5 bg-gradient-to-r from-transparent via-white/60 to-transparent mx-auto"></div>
               </div>
