@@ -18,7 +18,6 @@
       font-family: 'Poppins', sans-serif;
     }
 
-    /* Loader layout */
     #loader {
       position: fixed;
       top: 0; left: 0;
@@ -32,7 +31,6 @@
       overflow: hidden;
     }
 
-    /* Stars */
     .stars {
       position: absolute;
       top: 0; left: 0;
@@ -51,7 +49,6 @@
       50% { transform: scale(1.5); opacity: 1; }
     }
 
-    /* Loading text */
     #loading-text {
       color: #fff;
       font-size: 1.5rem;
@@ -60,7 +57,6 @@
       margin-bottom: 10px;
     }
 
-    /* Progress bar */
     .progress-container {
       width: 300px;
       height: 8px;
@@ -77,7 +73,6 @@
       transition: width 0.25s ease;
     }
 
-    /* Status text */
     #status-text {
       color: #aaa;
       font-size: 1rem;
@@ -85,6 +80,7 @@
       opacity: 0;
       transform: translateY(5px);
       transition: opacity 0.4s ease, transform 0.4s ease;
+      min-height: 1.2em;
     }
     #status-text.show {
       opacity: 1;
@@ -99,7 +95,7 @@
     <div class="progress-container">
       <div class="progress-bar" id="progress-bar"></div>
     </div>
-    <div id="status-text" class="show">Initializing ⚙️</div>
+    <div id="status-text"></div>
   </div>
 
   <div id="root"></div>
@@ -120,8 +116,8 @@
       "Boom 💥🎉"
     ];
 
-    let msgIndex = 0;
     let progress = 0;
+    let currentMsgIndex = 0;
     let imageLoaded = false;
 
     // Create stars
@@ -138,44 +134,58 @@
       starsContainer.appendChild(star);
     }
 
-    // Smooth fake progress
-    const fakeProgress = setInterval(() => {
+    // Show first message initially
+    function showMessage(index) {
+      statusText.classList.remove("show");
+      setTimeout(() => {
+        statusText.textContent = messages[index];
+        statusText.classList.add("show");
+      }, 300);
+    }
+    showMessage(0);
+
+    // Mapping message indices to progress thresholds (0, 20, 40, 60, 80, 100)
+    const thresholds = [0, 20, 40, 60, 80, 100];
+
+    // Increment progress step-wise and update messages
+    const progressInterval = setInterval(() => {
       if (progress < 100) {
-        progress += Math.random() < 0.5 ? 1 : 2; // small steps
-        if (!imageLoaded && progress > 90) progress = 90; // hold at 90% until image loads
+        progress += 1;
+
+        // If image not loaded, cap progress at 90
+        if (!imageLoaded && progress > 90) progress = 90;
 
         loadingText.textContent = `Loading... ${progress}%`;
         progressBar.style.width = `${progress}%`;
 
-        // Change message every 20%
-        if (progress >= (msgIndex + 1) * 20 && msgIndex < messages.length - 1) {
-          msgIndex++;
-          statusText.classList.remove("show");
-          setTimeout(() => {
-            statusText.textContent = messages[msgIndex];
-            statusText.classList.add("show");
-          }, 300);
+        // Check if progress crossed threshold for next message
+        if (currentMsgIndex < messages.length - 1 && progress >= thresholds[currentMsgIndex + 1]) {
+          currentMsgIndex++;
+          showMessage(currentMsgIndex);
         }
       } else {
-        clearInterval(fakeProgress);
+        // Once progress reaches 100 and image is loaded, clear interval and hide loader after delay
+        clearInterval(progressInterval);
         setTimeout(() => {
           document.getElementById("loader").style.display = "none";
-        }, 1000);
+        }, 1200);
       }
-    }, 120); // slower updates
+    }, 70); // slower for smooth animation
 
     // Preload background image
     const img = new Image();
     img.src = imageUrl;
     img.onload = () => {
       imageLoaded = true;
-      setTimeout(() => { // small delay before completing
+
+      // If progress < 100, jump to 100 with last message
+      if (progress < 100) {
         progress = 100;
-        loadingText.textContent = "Loading... 100%";
-        progressBar.style.width = "100%";
-        statusText.textContent = messages[messages.length - 1];
-        document.body.style.backgroundImage = `url('${imageUrl}')`;
-      }, 500);
+        loadingText.textContent = `Loading... 100%`;
+        progressBar.style.width = `100%`;
+        currentMsgIndex = messages.length - 1;
+        showMessage(currentMsgIndex);
+      }
     };
   </script>
 
