@@ -35,38 +35,60 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        flex-direction: column;
         font-size: 2rem;
         z-index: 9999;
+      }
+      .progress-container {
+        width: 300px;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 4px;
+        margin-top: 10px;
+        overflow: hidden;
+      }
+      .progress-bar {
+        height: 100%;
+        width: 0%;
+        background: #4cafef;
+        transition: width 0.2s ease;
       }
     </style>
   </head>
   <body>
-    <div id="loader">Loading... 0%</div>
+    <div id="loader">
+      <div id="loading-text">Loading... 0%</div>
+      <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+    </div>
     <div id="root"></div>
 
     <script>
       const imageUrl =
         "https://www.dropbox.com/scl/fi/71xfxpe1vl0m2abvlw542/Gemini_Generated_Image_b0oajpb0oajpb0oa.png?rlkey=56ul5n5r99ye6l5uqw6fwe6rr&st=idxxnmid&dl=1";
 
-      const loader = document.getElementById("loader");
+      const loadingText = document.getElementById("loading-text");
+      const progressBar = document.getElementById("progress-bar");
       let progress = 0;
 
-      // Fake loading percentage for smooth animation
       const fakeProgress = setInterval(() => {
         if (progress < 90) {
           progress += Math.floor(Math.random() * 5) + 1;
-          loader.textContent = `Loading... ${Math.min(progress, 90)}%`;
+          let pct = Math.min(progress, 90);
+          loadingText.textContent = `Loading... ${pct}%`;
+          progressBar.style.width = `${pct}%`;
         }
       }, 100);
 
-      // Preload background image
       const img = new Image();
       img.src = imageUrl;
       img.onload = () => {
         clearInterval(fakeProgress);
-        loader.textContent = "Loading... 100%";
+        loadingText.textContent = "Loading... 100%";
+        progressBar.style.width = "100%";
         document.body.style.backgroundImage = `url('${imageUrl}')`;
-        setTimeout(() => loader.style.display = "none", 300);
+        setTimeout(() => document.getElementById("loader").style.display = "none", 300);
       };
     </script>
 
