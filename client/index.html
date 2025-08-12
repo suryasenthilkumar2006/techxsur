@@ -1,101 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <link rel="icon" type="image/png" href="/figmaAssets/TECHX-Logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/figmaAssets/TECHX-Logo.png" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      font-family: 'Poppins', sans-serif;
+    }
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Aoboshi+One&family=Crimson+Text:wght@400;700&family=Inter:wght@400;700&family=Istok+Web:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    /* Loader layout */
+    #loader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      overflow: hidden;
+    }
 
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        background-size: cover;
-        background-position: center;
-        font-family: 'Poppins', sans-serif;
-      }
-      #loader {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #000;
-        color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        font-size: 2rem;
-        z-index: 9999;
-      }
-      .progress-container {
-        width: 300px;
-        height: 8px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 4px;
-        margin-top: 10px;
-        overflow: hidden;
-      }
-      .progress-bar {
-        height: 100%;
-        width: 0%;
-        background: #4cafef;
-        transition: width 0.2s ease;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="loader">
-      <div id="loading-text">Loading... 0%</div>
-      <div class="progress-container">
-        <div class="progress-bar" id="progress-bar"></div>
-      </div>
+    /* Stars */
+    .stars {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 1;
+    }
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: sparkle 2s infinite ease-in-out;
+    }
+    @keyframes sparkle {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.5); opacity: 1; }
+    }
+
+    /* Loading text */
+    #loading-text {
+      color: #fff;
+      font-size: 1.5rem;
+      z-index: 2;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    /* Progress bar */
+    .progress-container {
+      width: 300px;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      overflow: hidden;
+      z-index: 2;
+      margin-bottom: 10px;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #4cafef, #2196f3);
+      transition: width 0.25s ease;
+    }
+
+    /* Status text */
+    #status-text {
+      color: #aaa;
+      font-size: 1rem;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(5px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    #status-text.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div id="loader">
+    <div class="stars"></div>
+    <div id="loading-text">Loading... 0%</div>
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar"></div>
     </div>
-    <div id="root"></div>
+    <div id="status-text" class="show">Initializing ⚙️</div>
+  </div>
 
-    <script>
-      const imageUrl =
-        "https://www.dropbox.com/scl/fi/71xfxpe1vl0m2abvlw542/Gemini_Generated_Image_b0oajpb0oajpb0oa.png?rlkey=56ul5n5r99ye6l5uqw6fwe6rr&st=idxxnmid&dl=1";
+  <div id="root"></div>
 
-      const loadingText = document.getElementById("loading-text");
-      const progressBar = document.getElementById("progress-bar");
-      let progress = 0;
+  <script>
+    const imageUrl =
+      "https://www.dropbox.com/scl/fi/71xfxpe1vl0m2abvlw542/Gemini_Generated_Image_b0oajpb0oajpb0oa.png?rlkey=56ul5n5r99ye6l5uqw6fwe6rr&st=idxxnmid&dl=1";
 
-      const fakeProgress = setInterval(() => {
-        if (progress < 90) {
-          progress += Math.floor(Math.random() * 5) + 1;
-          let pct = Math.min(progress, 90);
-          loadingText.textContent = `Loading... ${pct}%`;
-          progressBar.style.width = `${pct}%`;
+    const loadingText = document.getElementById("loading-text");
+    const statusText = document.getElementById("status-text");
+    const progressBar = document.getElementById("progress-bar");
+
+    const messages = [
+      "Initializing ⚙️",
+      "Loading the essentials 📦",
+      "Compiling the gears 🛠️",
+      "Loading the magics ✨",
+      "Boom 💥🎉"
+    ];
+
+    let msgIndex = 0;
+    let progress = 0;
+    let imageLoaded = false;
+
+    // Create stars
+    const starsContainer = document.querySelector('.stars');
+    for (let i = 0; i < 100; i++) {
+      let star = document.createElement('div');
+      star.classList.add('star');
+      let size = Math.random() * 3 + 1 + 'px';
+      star.style.width = size;
+      star.style.height = size;
+      star.style.top = Math.random() * 100 + '%';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 2 + 's';
+      starsContainer.appendChild(star);
+    }
+
+    // Smooth fake progress
+    const fakeProgress = setInterval(() => {
+      if (progress < 100) {
+        progress += Math.random() < 0.5 ? 1 : 2; // small steps
+        if (!imageLoaded && progress > 90) progress = 90; // hold at 90% until image loads
+
+        loadingText.textContent = `Loading... ${progress}%`;
+        progressBar.style.width = `${progress}%`;
+
+        // Change message every 20%
+        if (progress >= (msgIndex + 1) * 20 && msgIndex < messages.length - 1) {
+          msgIndex++;
+          statusText.classList.remove("show");
+          setTimeout(() => {
+            statusText.textContent = messages[msgIndex];
+            statusText.classList.add("show");
+          }, 300);
         }
-      }, 100);
-
-      const img = new Image();
-      img.src = imageUrl;
-      img.onload = () => {
+      } else {
         clearInterval(fakeProgress);
+        setTimeout(() => {
+          document.getElementById("loader").style.display = "none";
+        }, 1000);
+      }
+    }, 120); // slower updates
+
+    // Preload background image
+    const img = new Image();
+    img.src = imageUrl;
+    img.onload = () => {
+      imageLoaded = true;
+      setTimeout(() => { // small delay before completing
+        progress = 100;
         loadingText.textContent = "Loading... 100%";
         progressBar.style.width = "100%";
+        statusText.textContent = messages[messages.length - 1];
         document.body.style.backgroundImage = `url('${imageUrl}')`;
-        setTimeout(() => document.getElementById("loader").style.display = "none", 300);
-      };
-    </script>
+      }, 500);
+    };
+  </script>
 
-    <script type="module" src="/src/main.tsx"></script>
-    <script
-      type="text/javascript"
-      src="https://replit.com/public/js/replit-dev-banner.js"
-    ></script>
-  </body>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
 </html>
