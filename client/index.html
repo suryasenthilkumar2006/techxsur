@@ -16,6 +16,7 @@
       background-size: cover;
       background-position: center;
       font-family: 'Poppins', sans-serif;
+      background-color: #000;
     }
 
     #loader {
@@ -29,6 +30,7 @@
       justify-content: center;
       z-index: 9999;
       overflow: hidden;
+      color: white;
     }
 
     .stars {
@@ -57,49 +59,7 @@
       z-index: 2;
       text-align: center;
       margin-bottom: 10px;
-    }
-
-    .progress-container {
-      width: 300px;
-      height: 8px;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 4px;
-      overflow: hidden;
-      z-index: 2;
-      margin-bottom: 10px;
-    }
-    .progress-bar {
-      position: relative;
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #4cafef, #2196f3);
-      transition: width 0.25s ease;
-      overflow: hidden;
-    }
-    .progress-bar::before {
-      content: '';
-      position: absolute;
-      top: 0; left: -50%;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(
-        120deg,
-        rgba(255, 255, 255, 0) 0%,
-        rgba(255, 255, 255, 0.4) 50%,
-        rgba(255, 255, 255, 0) 100%
-      );
-      transform: skewX(-25deg);
-      animation: shine 2.5s linear infinite;
-      pointer-events: none;
-      z-index: 1;
-    }
-    @keyframes shine {
-      0% {
-        left: -50%;
-      }
-      100% {
-        left: 150%;
-      }
+      user-select: none;
     }
 
     #status-text {
@@ -110,10 +70,44 @@
       transform: translateY(5px);
       transition: opacity 0.4s ease, transform 0.4s ease;
       min-height: 1.2em;
+      margin-bottom: 10px;
+      text-align: center;
     }
     #status-text.show {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    .progress-container {
+      position: relative;
+      width: 300px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      overflow: hidden;
+      z-index: 2;
+      margin-bottom: 10px;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #4cafef, #2196f3);
+      transition: width 0.25s ease;
+      border-radius: 6px 0 0 6px;
+    }
+
+    /* F1 car styling from Code 2 */
+    #car-icon {
+      position: absolute;
+      top: 50%;
+      width: 70px;
+      height: 35px;
+      transform: translate(-50%, -50%);
+      filter: drop-shadow(0 0 2px rgba(0,0,0,0.7));
+      transition: left 0.25s ease, transform 0.25s ease;
+      fill: #d32f2f;
+      z-index: 3;
+      pointer-events: none;
     }
   </style>
 </head>
@@ -121,13 +115,19 @@
   <div id="loader">
     <div class="stars"></div>
     <div id="loading-text">Loading... 0%</div>
-    <div class="progress-container">
-      <div class="progress-bar" id="progress-bar"></div>
-    </div>
     <div id="status-text"></div>
+    <div class="progress-container" id="progress-container">
+      <div class="progress-bar" id="progress-bar"></div>
+      <!-- F1 Car SVG from Code 2 -->
+      <svg id="car-icon" viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg" >
+        <path d="M2 20h8l2-5h12l2 5h12l2-3 6 3v2h-42v-2z" />
+        <circle cx="14" cy="24" r="4" fill="#222" />
+        <circle cx="14" cy="24" r="2" fill="#555" />
+        <circle cx="44" cy="24" r="4" fill="#222" />
+        <circle cx="44" cy="24" r="2" fill="#555" />
+      </svg>
+    </div>
   </div>
-
-  <div id="root"></div>
 
   <script>
     const imageUrl =
@@ -136,6 +136,8 @@
     const loadingText = document.getElementById("loading-text");
     const statusText = document.getElementById("status-text");
     const progressBar = document.getElementById("progress-bar");
+    const carIcon = document.getElementById("car-icon");
+    const progressContainer = document.getElementById("progress-container");
 
     const messages = [
       "Initializing ⚙️",
@@ -164,7 +166,7 @@
 
     // Create stars with random size, opacity, delay & duration (for independent sparkle)
     const starsContainer = document.querySelector('.stars');
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < 100; i++) {
       let star = document.createElement('div');
       star.classList.add('star');
       let size = (Math.random() * 3 + 1) + 'px';           // size 1-4 px
@@ -178,12 +180,37 @@
       starsContainer.appendChild(star);
     }
 
+    // Update car position according to progress % with drifting rotation
+    function updateCarPosition(progressPercent) {
+      const containerWidth = progressContainer.clientWidth;
+      const carWidth = carIcon.clientWidth;
+
+      // Calculate left position in px, keeping car fully inside container
+      let leftPx = (containerWidth * (progressPercent / 100));
+
+      // Clamp left to keep car fully visible inside container
+      if (leftPx < carWidth / 2) leftPx = carWidth / 2;
+      if (leftPx > containerWidth - carWidth / 2) leftPx = containerWidth - carWidth / 2;
+
+      carIcon.style.left = `${leftPx}px`;
+
+      // Subtle rotation effect for drifting feel
+      let rotation = 0;
+      if (progressPercent < 50) {
+        rotation = -10 + (progressPercent / 50) * 10; // from -10 to 0 deg
+      } else {
+        rotation = ((progressPercent - 50) / 50) * 10; // from 0 to +10 deg
+      }
+      carIcon.style.transform = `translate(-50%, -50%) rotate(${rotation.toFixed(2)}deg)`;
+    }
+
     // Slow progress: increments from 0 to 90%
     slowInterval = setInterval(() => {
       if (progress < 90) {
         progress++;
         loadingText.textContent = `Loading... ${progress}%`;
         progressBar.style.width = `${progress}%`;
+        updateCarPosition(progress);
 
         if (currentMsgIndex < messages.length - 1 && progress >= thresholds[currentMsgIndex + 1]) {
           currentMsgIndex++;
@@ -202,6 +229,7 @@
           progress++;
           loadingText.textContent = `Loading... ${progress}%`;
           progressBar.style.width = `${progress}%`;
+          updateCarPosition(progress);
 
           if (currentMsgIndex < messages.length - 1 && progress >= thresholds[currentMsgIndex + 1]) {
             currentMsgIndex++;
@@ -226,6 +254,7 @@
       }
     };
   </script>
+  <div id="root"></div> 
 
   <script type="module" src="/src/main.tsx"></script>
 </body>
