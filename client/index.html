@@ -166,7 +166,7 @@
 
     // Create stars with random size, opacity, delay & duration (for independent sparkle)
     const starsContainer = document.querySelector('.stars');
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 400; i++) {
       let star = document.createElement('div');
       star.classList.add('star');
       let size = (Math.random() * 3 + 1) + 'px';           // size 1-4 px
@@ -237,9 +237,8 @@
           }
         } else {
           clearInterval(fastInterval);
-          setTimeout(() => {
-            document.getElementById("loader").style.display = "none";
-          }, 1200);
+          // HIDE loader IMMEDIATELY at 100%
+          document.getElementById("loader").style.display = "none";
         }
       }, 20);
     }
