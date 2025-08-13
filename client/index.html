@@ -6,7 +6,7 @@
   <link rel="icon" type="image/png" href="/figmaAssets/TECHX-Logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css?family=Aoboshi+One:400|Crimson+Text:700,400|Inter:400,700|Istok+Web:700|Poppins:300,400,500,600,700&display=swap" rel="stylesheet" />
 
   <style>
     body {
@@ -42,7 +42,9 @@
       background: white;
       border-radius: 50%;
       opacity: 0.8;
-      animation: sparkle 2s infinite ease-in-out;
+      animation-name: sparkle;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
     }
     @keyframes sparkle {
       0%, 100% { transform: scale(1); opacity: 0.5; }
@@ -67,10 +69,37 @@
       margin-bottom: 10px;
     }
     .progress-bar {
+      position: relative;
       height: 100%;
       width: 0%;
       background: linear-gradient(90deg, #4cafef, #2196f3);
       transition: width 0.25s ease;
+      overflow: hidden;
+    }
+    .progress-bar::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -50%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: skewX(-25deg);
+      animation: shine 2.5s linear infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+    @keyframes shine {
+      0% {
+        left: -50%;
+      }
+      100% {
+        left: 150%;
+      }
     }
 
     #status-text {
@@ -118,23 +147,11 @@
 
     let progress = 0;
     let currentMsgIndex = 0;
-    let imageLoaded = false;
+    let slowInterval, fastInterval;
+    const thresholds = [0, 20, 40, 60, 80, 100];
+    let canComplete = false;
 
-    // Create stars
-    const starsContainer = document.querySelector('.stars');
-    for (let i = 0; i < 100; i++) {
-      let star = document.createElement('div');
-      star.classList.add('star');
-      let size = Math.random() * 3 + 1 + 'px';
-      star.style.width = size;
-      star.style.height = size;
-      star.style.top = Math.random() * 100 + '%';
-      star.style.left = Math.random() * 100 + '%';
-      star.style.animationDelay = Math.random() * 2 + 's';
-      starsContainer.appendChild(star);
-    }
-
-    // Show first message initially
+    // Show message with fade animation
     function showMessage(index) {
       statusText.classList.remove("show");
       setTimeout(() => {
@@ -142,49 +159,70 @@
         statusText.classList.add("show");
       }, 300);
     }
+
     showMessage(0);
 
-    // Mapping message indices to progress thresholds (0, 20, 40, 60, 80, 100)
-    const thresholds = [0, 20, 40, 60, 80, 100];
+    // Create stars with random size, opacity, delay & duration (for independent sparkle)
+    const starsContainer = document.querySelector('.stars');
+    for (let i = 0; i < 200; i++) {
+      let star = document.createElement('div');
+      star.classList.add('star');
+      let size = (Math.random() * 3 + 1) + 'px';           // size 1-4 px
+      star.style.width = size;
+      star.style.height = size;
+      star.style.top = Math.random() * 100 + '%';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.opacity = (Math.random() * 0.5 + 0.5).toFixed(2);
+      star.style.animationDelay = (Math.random() * 2) + 's';         // random delay 0-2s
+      star.style.animationDuration = (Math.random() * 1 + 1.5) + 's'; // random duration 1.5-2.5s
+      starsContainer.appendChild(star);
+    }
 
-    // Increment progress step-wise and update messages
-    const progressInterval = setInterval(() => {
-      if (progress < 100) {
-        progress += 1;
-
-        // If image not loaded, cap progress at 90
-        if (!imageLoaded && progress > 90) progress = 90;
-
+    // Slow progress: increments from 0 to 90%
+    slowInterval = setInterval(() => {
+      if (progress < 90) {
+        progress++;
         loadingText.textContent = `Loading... ${progress}%`;
         progressBar.style.width = `${progress}%`;
 
-        // Check if progress crossed threshold for next message
         if (currentMsgIndex < messages.length - 1 && progress >= thresholds[currentMsgIndex + 1]) {
           currentMsgIndex++;
           showMessage(currentMsgIndex);
         }
       } else {
-        // Once progress reaches 100 and image is loaded, clear interval and hide loader after delay
-        clearInterval(progressInterval);
-        setTimeout(() => {
-          document.getElementById("loader").style.display = "none";
-        }, 1200);
+        clearInterval(slowInterval);
+        if (canComplete) startFastProgress();
       }
-    }, 70); // slower for smooth animation
+    }, 70);
 
-    // Preload background image
+    // Fast progress: increments from current progress (≥90) to 100%
+    function startFastProgress() {
+      fastInterval = setInterval(() => {
+        if (progress < 100) {
+          progress++;
+          loadingText.textContent = `Loading... ${progress}%`;
+          progressBar.style.width = `${progress}%`;
+
+          if (currentMsgIndex < messages.length - 1 && progress >= thresholds[currentMsgIndex + 1]) {
+            currentMsgIndex++;
+            showMessage(currentMsgIndex);
+          }
+        } else {
+          clearInterval(fastInterval);
+          setTimeout(() => {
+            document.getElementById("loader").style.display = "none";
+          }, 1200);
+        }
+      }, 20);
+    }
+
+    // Preload image and trigger fast finish on load
     const img = new Image();
     img.src = imageUrl;
     img.onload = () => {
-      imageLoaded = true;
-
-      // If progress < 100, jump to 100 with last message
-      if (progress < 100) {
-        progress = 100;
-        loadingText.textContent = `Loading... 100%`;
-        progressBar.style.width = `100%`;
-        currentMsgIndex = messages.length - 1;
-        showMessage(currentMsgIndex);
+      canComplete = true;
+      if (progress >= 90) {
+        startFastProgress();
       }
     };
   </script>
