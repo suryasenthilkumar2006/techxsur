@@ -309,7 +309,7 @@ const CollaboratorsRow = () => {
                 two-day event offers a vibrant mix of learning, collaboration, and innovation.
                 Participants dive into engaging hands-on workshops, thought-provoking tech 
                 talks led by industry experts, and high-energy sessions including debates, 
-                panel discussions, and a thrilling hackathon — all designed to inspire, 
+                panel discussions, and a thrilling hackathon - all designed to inspire, 
                 connect, and ignite the next generation of tech leaders.
               </p>
             </div>
