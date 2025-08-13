@@ -13,8 +13,6 @@
       margin: 0;
       padding: 0;
       height: 100vh;
-      background-size: cover;
-      background-position: center;
       font-family: 'Poppins', sans-serif;
       background-color: #000;
     }
@@ -78,7 +76,7 @@
       width: 0%;
       background: linear-gradient(90deg, #4cafef, #2196f3);
       transition: width 0.25s ease;
-      border-radius: 6px 0 0 6px;
+      border-radius: 10px;
     }
 
     /* Smoke effect */
@@ -97,16 +95,18 @@
       position: absolute;
       width: 10px;
       height: 10px;
-      background: rgba(200,200,200,0.5);
+      background: rgba(0,0,0,0.8); /* black smoke */
       border-radius: 50%;
-      filter: blur(2px);
-      animation: rise 1s linear forwards;
+      filter: blur(3px);
+      animation: drift 2s linear forwards;
     }
 
-    @keyframes rise {
-      0% { transform: translate(0,0) scale(0.5); opacity: 0.5; }
-      50% { transform: translate(-10px,-10px) scale(1); opacity: 0.3; }
-      100% { transform: translate(-20px,-20px) scale(1.5); opacity: 0; }
+    @keyframes drift {
+      0% { transform: translate(0,0) scale(0.5); opacity: 0.8; }
+      25% { transform: translate(-5px,-15px) scale(0.8); opacity: 0.6; }
+      50% { transform: translate(5px,-30px) scale(1); opacity: 0.5; }
+      75% { transform: translate(-5px,-45px) scale(1.2); opacity: 0.3; }
+      100% { transform: translate(0,-60px) scale(1.5); opacity: 0; }
     }
 
     #car-icon {
@@ -185,7 +185,7 @@
     showMessage(0);
 
     const starsContainer = document.querySelector('.stars');
-    for (let i = 0; i < 400; i++) {
+    for (let i = 0; i < 150; i++) {
       let star = document.createElement('div');
       star.classList.add('star');
       let size = (Math.random() * 3 + 1) + 'px';
@@ -210,7 +210,7 @@
       carIcon.style.left = `${leftPx}px`;
     }
 
-    // Smoke generator
+    // Smoke generator with random drift
     function createSmoke() {
       const smoke = document.createElement('div');
       smoke.classList.add('smoke');
@@ -220,9 +220,13 @@
       smoke.style.left = carLeft - 15 + 'px';
       smoke.style.top = carTop + 'px';
 
+      // Randomize animation speed slightly
+      const duration = 1.5 + Math.random(); // 1.5s to 2.5s
+      smoke.style.animationDuration = duration + 's';
+
       smokeContainer.appendChild(smoke);
 
-      setTimeout(() => smoke.remove(), 1000);
+      setTimeout(() => smoke.remove(), duration * 1000);
     }
 
     setInterval(createSmoke, 150);
