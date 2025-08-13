@@ -58,7 +58,7 @@
       font-size: 1.5rem;
       z-index: 2;
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
       user-select: none;
     }
 
@@ -70,7 +70,7 @@
       transform: translateY(5px);
       transition: opacity 0.4s ease, transform 0.4s ease;
       min-height: 1.2em;
-      margin-bottom: 10px;
+      margin-bottom: 0;
       text-align: center;
     }
     #status-text.show {
@@ -86,7 +86,7 @@
       border-radius: 6px;
       overflow: hidden;
       z-index: 2;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
     .progress-bar {
       height: 100%;
@@ -96,7 +96,7 @@
       border-radius: 6px 0 0 6px;
     }
 
-    /* F1 car styling from Code 2 */
+    /* F1 car styling */
     #car-icon {
       position: absolute;
       top: 50%;
@@ -114,11 +114,11 @@
 <body>
   <div id="loader">
     <div class="stars"></div>
+
     <div id="loading-text">Loading... 0%</div>
-    <div id="status-text"></div>
+
     <div class="progress-container" id="progress-container">
       <div class="progress-bar" id="progress-bar"></div>
-      <!-- F1 Car SVG from Code 2 -->
       <svg id="car-icon" viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg" >
         <path d="M2 20h8l2-5h12l2 5h12l2-3 6 3v2h-42v-2z" />
         <circle cx="14" cy="24" r="4" fill="#222" />
@@ -127,6 +127,8 @@
         <circle cx="44" cy="24" r="2" fill="#555" />
       </svg>
     </div>
+
+    <div id="status-text"></div>
   </div>
 
   <script>
