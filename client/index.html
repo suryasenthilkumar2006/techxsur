@@ -13,8 +13,6 @@
       margin: 0;
       padding: 0;
       height: 100vh;
-      background-size: cover;
-      background-position: center;
       font-family: 'Poppins', sans-serif;
       background-color: #000;
     }
@@ -54,16 +52,14 @@
       50% { transform: scale(1.5); opacity: 1; }
     }
 
-    /* Loading text */
     #loading-text {
       color: #fff;
       font-size: 1.5rem;
       z-index: 2;
       text-align: center;
-      margin-bottom: 15px; /* increased margin for spacing */
+      margin-bottom: 15px;
     }
 
-    /* Progress bar container */
     .progress-container {
       position: relative;
       width: 300px;
@@ -72,33 +68,59 @@
       border-radius: 6px;
       overflow: hidden;
       z-index: 2;
-      margin-bottom: 15px; /* increased margin for spacing */
+      margin-bottom: 15px;
     }
 
-    /* Progress bar */
     .progress-bar {
       height: 100%;
       width: 0%;
       background: linear-gradient(90deg, #4cafef, #2196f3);
       transition: width 0.25s ease;
-      border-radius: 6px 0 0 6px;
+      border-radius: 10px;
     }
 
-    /* F1 car styling */
+    /* Smoke effect */
+    .smoke-container {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: visible;
+      z-index: 2;
+    }
+
+    .smoke {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: rgba(0,0,0,0.8); /* black smoke */
+      border-radius: 50%;
+      filter: blur(3px);
+      animation: drift 2s linear forwards;
+    }
+
+    @keyframes drift {
+      0% { transform: translate(0,0) scale(0.5); opacity: 0.8; }
+      25% { transform: translate(-5px,-15px) scale(0.8); opacity: 0.6; }
+      50% { transform: translate(5px,-30px) scale(1); opacity: 0.5; }
+      75% { transform: translate(-5px,-45px) scale(1.2); opacity: 0.3; }
+      100% { transform: translate(0,-60px) scale(1.5); opacity: 0; }
+    }
+
     #car-icon {
       position: absolute;
       top: 50%;
-      width: 70px;
-      height: 35px;
+      width: 50px;
+      height: auto;
       transform: translate(-50%, -50%);
       filter: drop-shadow(0 0 2px rgba(0,0,0,0.7));
       transition: left 0.25s ease, transform 0.25s ease;
-      fill: #d32f2f;
       z-index: 3;
       pointer-events: none;
     }
 
-    /* Status text */
     #status-text {
       color: #aaa;
       font-size: 1rem;
@@ -119,36 +141,24 @@
 <body>
   <div id="loader">
     <div class="stars"></div>
-
-    <!-- 1. Loading text -->
     <div id="loading-text">Loading... 0%</div>
 
-    <!-- 2. Progress bar with car -->
     <div class="progress-container" id="progress-container">
       <div class="progress-bar" id="progress-bar"></div>
-      <!-- F1 Car SVG -->
-      <svg id="car-icon" viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg" >
-        <path d="M2 20h8l2-5h12l2 5h12l2-3 6 3v2h-42v-2z" />
-        <circle cx="14" cy="24" r="4" fill="#222" />
-        <circle cx="14" cy="24" r="2" fill="#555" />
-        <circle cx="44" cy="24" r="4" fill="#222" />
-        <circle cx="44" cy="24" r="2" fill="#555" />
-      </svg>
+      <div class="smoke-container" id="smoke-container"></div>
+      <img id="car-icon" src="/figmaAssets/F1_car.png" />
     </div>
 
-    <!-- 3. Status message -->
     <div id="status-text"></div>
   </div>
 
   <script>
-    const imageUrl =
-      "https://www.dropbox.com/scl/fi/71xfxpe1vl0m2abvlw542/Gemini_Generated_Image_b0oajpb0oajpb0oa.png?rlkey=56ul5n5r99ye6l5uqw6fwe6rr&st=idxxnmid&dl=1";
-
     const loadingText = document.getElementById("loading-text");
     const statusText = document.getElementById("status-text");
     const progressBar = document.getElementById("progress-bar");
     const carIcon = document.getElementById("car-icon");
     const progressContainer = document.getElementById("progress-container");
+    const smokeContainer = document.getElementById("smoke-container");
 
     const messages = [
       "Engine start: powering up the PU 🔥",
@@ -174,9 +184,8 @@
 
     showMessage(0);
 
-    // Create stars with random size, opacity, delay & duration
     const starsContainer = document.querySelector('.stars');
-    for (let i = 0; i < 400; i++) {
+    for (let i = 0; i < 150; i++) {
       let star = document.createElement('div');
       star.classList.add('star');
       let size = (Math.random() * 3 + 1) + 'px';
@@ -199,15 +208,28 @@
       if (leftPx > containerWidth - carWidth / 2) leftPx = containerWidth - carWidth / 2;
 
       carIcon.style.left = `${leftPx}px`;
-
-      let rotation = 0;
-      if (progressPercent < 50) {
-        rotation = -10 + (progressPercent / 50) * 10;
-      } else {
-        rotation = ((progressPercent - 50) / 50) * 10;
-      }
-      carIcon.style.transform = `translate(-50%, -50%) rotate(${rotation.toFixed(2)}deg)`;
     }
+
+    // Smoke generator with random drift
+    function createSmoke() {
+      const smoke = document.createElement('div');
+      smoke.classList.add('smoke');
+
+      const carLeft = carIcon.offsetLeft;
+      const carTop = carIcon.offsetTop;
+      smoke.style.left = carLeft - 15 + 'px';
+      smoke.style.top = carTop + 'px';
+
+      // Randomize animation speed slightly
+      const duration = 1.5 + Math.random(); // 1.5s to 2.5s
+      smoke.style.animationDuration = duration + 's';
+
+      smokeContainer.appendChild(smoke);
+
+      setTimeout(() => smoke.remove(), duration * 1000);
+    }
+
+    setInterval(createSmoke, 150);
 
     slowInterval = setInterval(() => {
       if (progress < 90) {
@@ -246,16 +268,16 @@
     }
 
     const img = new Image();
-    img.src = imageUrl;
+    img.src = "/figmaAssets/F1_car.png";
     img.onload = () => {
       canComplete = true;
-      if (progress >= 90) {
+      if (progress >= 95) {
         startFastProgress();
       }
     };
   </script>
-  <div id="root"></div>
 
+  <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>
