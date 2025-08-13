@@ -31,6 +31,7 @@
       z-index: 9999;
       overflow: hidden;
       color: white;
+      user-select: none;
     }
 
     .stars {
@@ -53,31 +54,16 @@
       50% { transform: scale(1.5); opacity: 1; }
     }
 
+    /* Loading text */
     #loading-text {
       color: #fff;
       font-size: 1.5rem;
       z-index: 2;
       text-align: center;
-      margin-bottom: 20px;
-      user-select: none;
+      margin-bottom: 15px; /* increased margin for spacing */
     }
 
-    #status-text {
-      color: #aaa;
-      font-size: 1rem;
-      z-index: 2;
-      opacity: 0;
-      transform: translateY(5px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
-      min-height: 1.2em;
-      margin-bottom: 0;
-      text-align: center;
-    }
-    #status-text.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
+    /* Progress bar container */
     .progress-container {
       position: relative;
       width: 300px;
@@ -86,8 +72,10 @@
       border-radius: 6px;
       overflow: hidden;
       z-index: 2;
-      margin-bottom: 20px;
+      margin-bottom: 15px; /* increased margin for spacing */
     }
+
+    /* Progress bar */
     .progress-bar {
       height: 100%;
       width: 0%;
@@ -109,16 +97,36 @@
       z-index: 3;
       pointer-events: none;
     }
+
+    /* Status text */
+    #status-text {
+      color: #aaa;
+      font-size: 1rem;
+      z-index: 2;
+      opacity: 0;
+      transform: translateY(5px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      min-height: 1.2em;
+      text-align: center;
+      max-width: 300px;
+    }
+    #status-text.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
   <div id="loader">
     <div class="stars"></div>
 
+    <!-- 1. Loading text -->
     <div id="loading-text">Loading... 0%</div>
 
+    <!-- 2. Progress bar with car -->
     <div class="progress-container" id="progress-container">
       <div class="progress-bar" id="progress-bar"></div>
+      <!-- F1 Car SVG -->
       <svg id="car-icon" viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg" >
         <path d="M2 20h8l2-5h12l2 5h12l2-3 6 3v2h-42v-2z" />
         <circle cx="14" cy="24" r="4" fill="#222" />
@@ -128,6 +136,7 @@
       </svg>
     </div>
 
+    <!-- 3. Status message -->
     <div id="status-text"></div>
   </div>
 
@@ -142,11 +151,11 @@
     const progressContainer = document.getElementById("progress-container");
 
     const messages = [
-      "Initializing ⚙️",
-      "Loading the essentials 📦",
-      "Compiling the gears 🛠️",
-      "Loading the magics ✨",
-      "Boom 💥🎉"
+      "Engine start: powering up the PU 🔥",
+      "Clutch engaged: shifting into first gear ⚙️",
+      "Navigating the apex: pushing the limits 🏎️💨",
+      "Deploying DRS: turbo boost activated 🚀",
+      "Crossing the checkered flag: victory lap 🏁🎉"
     ];
 
     let progress = 0;
@@ -155,7 +164,6 @@
     const thresholds = [0, 20, 40, 60, 80, 100];
     let canComplete = false;
 
-    // Show message with fade animation
     function showMessage(index) {
       statusText.classList.remove("show");
       setTimeout(() => {
@@ -166,47 +174,41 @@
 
     showMessage(0);
 
-    // Create stars with random size, opacity, delay & duration (for independent sparkle)
+    // Create stars with random size, opacity, delay & duration
     const starsContainer = document.querySelector('.stars');
     for (let i = 0; i < 400; i++) {
       let star = document.createElement('div');
       star.classList.add('star');
-      let size = (Math.random() * 3 + 1) + 'px';           // size 1-4 px
+      let size = (Math.random() * 3 + 1) + 'px';
       star.style.width = size;
       star.style.height = size;
       star.style.top = Math.random() * 100 + '%';
       star.style.left = Math.random() * 100 + '%';
       star.style.opacity = (Math.random() * 0.5 + 0.5).toFixed(2);
-      star.style.animationDelay = (Math.random() * 2) + 's';         // random delay 0-2s
-      star.style.animationDuration = (Math.random() * 1 + 1.5) + 's'; // random duration 1.5-2.5s
+      star.style.animationDelay = (Math.random() * 2) + 's';
+      star.style.animationDuration = (Math.random() * 1 + 1.5) + 's';
       starsContainer.appendChild(star);
     }
 
-    // Update car position according to progress % with drifting rotation
     function updateCarPosition(progressPercent) {
       const containerWidth = progressContainer.clientWidth;
       const carWidth = carIcon.clientWidth;
 
-      // Calculate left position in px, keeping car fully inside container
       let leftPx = (containerWidth * (progressPercent / 100));
-
-      // Clamp left to keep car fully visible inside container
       if (leftPx < carWidth / 2) leftPx = carWidth / 2;
       if (leftPx > containerWidth - carWidth / 2) leftPx = containerWidth - carWidth / 2;
 
       carIcon.style.left = `${leftPx}px`;
 
-      // Subtle rotation effect for drifting feel
       let rotation = 0;
       if (progressPercent < 50) {
-        rotation = -10 + (progressPercent / 50) * 10; // from -10 to 0 deg
+        rotation = -10 + (progressPercent / 50) * 10;
       } else {
-        rotation = ((progressPercent - 50) / 50) * 10; // from 0 to +10 deg
+        rotation = ((progressPercent - 50) / 50) * 10;
       }
       carIcon.style.transform = `translate(-50%, -50%) rotate(${rotation.toFixed(2)}deg)`;
     }
 
-    // Slow progress: increments from 0 to 90%
     slowInterval = setInterval(() => {
       if (progress < 90) {
         progress++;
@@ -224,7 +226,6 @@
       }
     }, 70);
 
-    // Fast progress: increments from current progress (≥90) to 100%
     function startFastProgress() {
       fastInterval = setInterval(() => {
         if (progress < 100) {
@@ -239,13 +240,11 @@
           }
         } else {
           clearInterval(fastInterval);
-          // HIDE loader IMMEDIATELY at 100%
           document.getElementById("loader").style.display = "none";
         }
       }, 20);
     }
 
-    // Preload image and trigger fast finish on load
     const img = new Image();
     img.src = imageUrl;
     img.onload = () => {
@@ -255,7 +254,7 @@
       }
     };
   </script>
-  <div id="root"></div> 
+  <div id="root"></div>
 
   <script type="module" src="/src/main.tsx"></script>
 </body>
