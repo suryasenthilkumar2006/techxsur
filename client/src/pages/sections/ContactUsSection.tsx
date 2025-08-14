@@ -297,9 +297,8 @@ export const ContactUsSection = (): JSX.Element => {
                   </a>
                 </div>
 
-
-                <div className="flex items-center space-x-2 overflow-x-auto max-w-full">
-                  <span className="font-medium text-white/80 whitespace-nowrap">
+                <div className="flex flex-wrap sm:flex-nowrap items-center space-x-2 max-w-full overflow-x-auto">
+                  <span className="font-medium text-white/80 text-sm sm:text-base whitespace-nowrap">
                     Parveen Begum T –
                   </span>
                   <a
@@ -309,7 +308,19 @@ export const ContactUsSection = (): JSX.Element => {
                     parveenbegumt@ieee.org
                   </a>
                 </div>
-              </div>
+
+                {/* <div className="flex items-center space-x-2 overflow-x-auto max-w-full">
+                  <span className="font-medium text-white/80 whitespace-nowrap">
+                    Parveen Begum T –
+                  </span>
+                  <a
+                    href="mailto:parveenbegumt@ieee.org"
+                    className="text-white/80 hover:underline text-xs sm:text-sm whitespace-nowrap"
+                  >
+                    parveenbegumt@ieee.org
+                  </a>
+                </div>*/}
+              </div> 
 
 
 
