@@ -40,10 +40,9 @@ const sponsors = {
       url: "https://oneyesinfotechsolutions.com",
       description: "",
     },
-     {
+    {
       name: "PT Export",
       logo: "/figmaAssets/ptexports.jpg",
-      url: "https://www.advantagepro.in",
       description: "",
     },
     {
@@ -52,7 +51,7 @@ const sponsors = {
       url: "https://paraprojects.in",
       description: "",
     },
-     {
+    {
       name: "Thozhil",
       logo: "/figmaAssets/thozhill.png",
       url: "https://www.thozhil.co.in",
@@ -86,32 +85,32 @@ const SponsorSection = () => {
     <section className="bg-gradient-to-b from-black via-[#2a0000] to-black text-white py-24 px-6">
       <div className="max-w-6xl mx-auto text-center">
         {/* Animated Title Box */}
-       <div className="relative inline-block mb-16 animate-fade-in-up">
-  <div className="absolute -inset-6 bg-red-700/30 rounded-3xl blur-3xl opacity-50 animate-pulse"></div>
-  <div className="relative inline-block mb-16 animate-fade-in-up">
-  {/* Glowing blurred background */}
-  <div className="absolute -inset-5 bg-red-700/40 rounded-3xl blur-2xl opacity-40 animate-pulse pointer-events-none"></div>
+        <div className="relative inline-block mb-16 animate-fade-in-up">
+          <div className="absolute -inset-6 bg-red-700/30 rounded-3xl blur-3xl opacity-50 animate-pulse"></div>
+          <div className="relative inline-block mb-16 animate-fade-in-up">
+            {/* Glowing blurred background */}
+            <div className="absolute -inset-5 bg-red-700/40 rounded-3xl blur-2xl opacity-40 animate-pulse pointer-events-none"></div>
 
-  {/* Main content container */}
-  <div className="relative px-8 py-6 sm:px-10 sm:py-8 border border-red-800 rounded-3xl bg-black/70 backdrop-blur-xl shadow-xl transition-transform duration-500 ease-out hover:scale-[1.02] max-w-2xl mx-auto">
-    
-    {/* Title */}
-    <h2 className="text-4xl lg:text-5xl font-extrabold mb-4 font-[Poppins] tracking-wide text-white animate-text-glow text-center">
-      <span className="inline-block animate-slide-in-up">Our Sponsors</span>
-    </h2>
+            {/* Main content container */}
+            <div className="relative px-8 py-6 sm:px-10 sm:py-8 border border-red-800 rounded-3xl bg-black/70 backdrop-blur-xl shadow-xl transition-transform duration-500 ease-out hover:scale-[1.02] max-w-2xl mx-auto">
 
-    {/* Subtitle */}
-    <p className="text-gray-300 text-lg font-[Inter] animate-fade-in opacity-80 leading-relaxed text-center">
-      People who helped to make{" "}
-      <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-white to-red-400 font-semibold animate-gradient-x">
-        TechX
-      </span>{" "}
-      a reality.
-    </p>
-  </div>
-</div>
+              {/* Title */}
+              <h2 className="text-4xl lg:text-5xl font-extrabold mb-4 font-[Poppins] tracking-wide text-white animate-text-glow text-center">
+                <span className="inline-block animate-slide-in-up">Our Sponsors</span>
+              </h2>
 
-</div>
+              {/* Subtitle */}
+              <p className="text-gray-300 text-lg font-[Inter] animate-fade-in opacity-80 leading-relaxed text-center">
+                People who helped to make{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-white to-red-400 font-semibold animate-gradient-x">
+                  TechX
+                </span>{" "}
+                a reality.
+              </p>
+            </div>
+          </div>
+
+        </div>
 
 
         {/* Sponsor Categories */}
@@ -125,8 +124,8 @@ const SponsorSection = () => {
               {items.map((sponsor, index) => (
                 <div
                   key={index}
-                  onClick={() => window.open(sponsor.url, "_blank")}
-                  className="relative group w-32 h-32 lg:w-40 lg:h-40 flex flex-col items-center justify-center p-2 rounded-xl border border-red-800 bg-white/10 backdrop-blur-md shadow-md hover:scale-105 transition-transform duration-300 cursor-pointer"
+                  onClick={() => sponsor.url ? window.open(sponsor.url, "_blank") : null} // only open if URL exists
+                  className={`relative group w-32 h-32 lg:w-40 lg:h-40 flex flex-col items-center justify-center p-2 rounded-xl border border-red-800 bg-white/10 backdrop-blur-md shadow-md transition-transform duration-300 cursor-pointer hover:scale-105`}
                 >
                   <img
                     src={sponsor.logo}
