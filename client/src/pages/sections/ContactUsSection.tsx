@@ -236,13 +236,13 @@ export const ContactUsSection = (): JSX.Element => {
               >
                 <FontAwesomeIcon icon={faXTwitter} className="text-white text-lg" />
               </a>
-<a
-  href="mailto:techxmadras25@gmail.com"
-  className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20"
-  aria-label="Email"
->
-  <FontAwesomeIcon icon={faEnvelope} className="text-white text-lg" />
-</a>
+              <a
+                href="mailto:techxmadras25@gmail.com"
+                className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 backdrop-blur-sm border border-white/20"
+                aria-label="Email"
+              >
+                <FontAwesomeIcon icon={faEnvelope} className="text-white text-lg" />
+              </a>
 
 
             </div>
@@ -284,23 +284,34 @@ export const ContactUsSection = (): JSX.Element => {
                 <p className="font-['Poppins',sans-serif] font-semibold text-white text-lg mb-3">
                   IEEE CS Chairpersons
                 </p>
-                <p className="font-['Poppins',sans-serif] text-white/80 text-base whitespace-nowrap">
-                  <span className="font-medium">Charu Dharshana R</span> –
-                  <a href="mailto:charudharshana49@ieee.org" className="hover:underline ml-1">
+
+                <div className="flex flex-wrap sm:flex-nowrap items-center space-x-2 max-w-full overflow-x-auto">
+                  <span className="font-medium text-white/80 text-sm sm:text-base whitespace-nowrap">
+                    Charu Dharshana R –
+                  </span>
+                  <a
+                    href="mailto:charudharshana49@ieee.org"
+                    className="text-white/80 hover:underline text-xs sm:text-sm whitespace-nowrap"
+                  >
                     charudharshana49@ieee.org
                   </a>
-                </p>
+                </div>
 
 
-                <p className="font-['Poppins',sans-serif] text-white/80 text-base whitespace-nowrap">
-                  <span className="font-medium">Parveen Begum T</span> –
-                  <a href="mailto:charudharshana49@ieee.org" className="hover:underline ml-1">
+                <div className="flex items-center space-x-2 overflow-x-auto max-w-full">
+                  <span className="font-medium text-white/80 whitespace-nowrap">
+                    Parveen Begum T –
+                  </span>
+                  <a
+                    href="mailto:parveenbegumt@ieee.org"
+                    className="text-white/80 hover:underline text-xs sm:text-sm whitespace-nowrap"
+                  >
                     parveenbegumt@ieee.org
                   </a>
-                </p>
-
-
+                </div>
               </div>
+
+
 
               <div>
                 {/* <p className="font-['Poppins',sans-serif] font-semibold text-white text-lg mb-3">
